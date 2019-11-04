@@ -25,7 +25,7 @@ public class LibraryImpl implements Library {
 	@Override
 	public Book borrowBook(final long isbnCode, final Member member, final LocalDate borrowedAt)
 			throws HasLateBooksException {
-		LOG.debug("member {}: " + member + "borrow Book  with isbnCode{}: " + isbnCode);
+		LOG.debug(" borrow Book  with isbnCode{}: " + isbnCode);
 
 		if (member.getBorrowBook() != null) {
 			bookRepository.findBorrowedBookDate(member.getBorrowBook()).ifPresent(borrowedDate -> {
@@ -43,7 +43,7 @@ public class LibraryImpl implements Library {
 
 	@Override
 	public void returnBook(final Book book, final Member member) {
-		LOG.debug("member {} " + member + ", return Book {}" + book);
+		LOG.debug(" return Book {}" + book);
 
 		bookRepository.findBorrowedBookDate(book).ifPresent(borrowedDate -> {
 			int keepingDays = (int) ChronoUnit.DAYS.between(borrowedDate, LocalDate.now());
